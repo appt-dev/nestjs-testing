@@ -46,4 +46,16 @@ describe('User Resolver', () => {
       expect(registeredUser).toMatchObject(newUser);
     });
   });
+
+  describe('login', () => {
+    it('should be able to login', async () => {
+      const loginData = {
+        password: 'Password@1',
+        email: 'alice@gmail.com',
+      };
+
+      const isLogin = await userResolver.login(loginData);
+      expect(isLogin).toBeTruthy();
+    });
+  });
 });
