@@ -1,10 +1,9 @@
-import { ExpressContextFunctionArgument } from '@apollo/server/dist/esm/express4/index.js';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import { ApolloDriver, ApolloDriverAsyncConfig } from '@nestjs/apollo';
-import { User } from './user-entity.js';
-import { getOrmConfig } from './orm.config.js';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as TypeORM from 'typeorm';
+import { getOrmConfig } from './orm.config.js';
+import { User } from './user-entity.js';
 
 const gqlConfig: ApolloDriverAsyncConfig = {
   driver: ApolloDriver,
@@ -14,7 +13,7 @@ const gqlConfig: ApolloDriverAsyncConfig = {
       useFactory: getOrmConfig,
     }),
   ],
-  useFactory: async (dataSource: TypeORM.DataSource) => ({
+  useFactory: async () => ({
     path: '/graphql',
     autoSchemaFile: true,
     sortSchema: true,
